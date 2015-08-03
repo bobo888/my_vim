@@ -5,11 +5,33 @@ set modelines=0		" CVE-2007-2438
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+let g:molokai_original = 1
+let g:rehash256 = 1
+syntax enable
 
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+
+" 设置Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" 设置crtlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+"powerline 设置
+set guifont=PowerlineSymbols\ for\ Powerline
+set nocompatible
+set t_Co=256
+let g:Powerline_symbols = 'fancy'
 
 " Vundle设置
 set nocompatible              " be iMproved, required
@@ -29,8 +51,6 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/winmanager'
 Plugin 'vim-scripts/a.vim'
 Plugin 'kien/ctrlp.vim'
@@ -70,28 +90,8 @@ filetype plugin indent on    " required
  let NERDTreeWinPos='left'
  " 窗口宽
  let NERDTreeWinSize=31
-
-
- " taglist设置
- let Tlist_Show_One_File=1 "
- " 0为同时显示多个文件函数列表,1则只显示当前文件函数列表
- let Tlist_Auto_Update=1
- let Tlist_File_Fold_Auto_Close=1 " 非当前文件，函数列表折叠隐藏
- let Tlist_Exit_OnlyWindow=1 "如果taglist是最后一个窗口，则退出vim 
- let Tlist_Auto_Update=1            "Automatically update the taglist to
- " include newly edited files.
- "把taglist窗口放在屏幕的右侧，缺省在左侧
- "let Tlist_Use_Right_Window=1 
- "显示taglist菜单
- "let Tlist_Show_Menu=1
- "启动vim自动打开taglist
- let Tlist_Auto_Open=1
- " ctags, 指定tags文件的位置,让vim自动在当前或者上层文件夹中寻找tags文件
- set tags=tags
- " 添加系统调用路径
- set tags+=/usr/include/tags
- "键绑定，刷新tags
- nmap tg :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q *<CR>:set tags+=./tags<CR>
+ " 设置快捷键 shift + m
+ map <S-m> <plug>NERDTreeTabsToggle<CR>
 
 
 " scope 设置
